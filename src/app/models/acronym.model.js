@@ -2,9 +2,13 @@ const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
 
 const AcronymSchema = new mongoose.Schema({
-    acronym:{
-        type: Map,
-        of: String,
+    acronym: {
+        type: String,
+        required: true
+    },
+    value: {
+        type: String,
+        required: true
     },
     createdAt: { type: Date, default: new Date() },
     updatedAt: { type: Date, default: new Date() }

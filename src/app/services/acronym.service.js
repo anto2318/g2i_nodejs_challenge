@@ -61,9 +61,8 @@ class AcronymService {
     }
 
     async update(acronym, data) {
-        const query = acronym[`${acronym}`];
         const updated = await this.Model.findOneAndUpdate(
-            { query },
+            { acronym: acronym },
             { $set: objectToDotNotation({ updatedAt: Date.now(), ...data }) },
             { new: true }
         )
