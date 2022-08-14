@@ -13,6 +13,7 @@ class AcronymService {
         populate,
         page,
         limit,
+        from,
         sortField,
         sortDirection,
         querySearch,
@@ -23,6 +24,7 @@ class AcronymService {
             select: select || '',
             populate: populate,
             page: page || search.pageOptions.page,
+            from: from || 0,
             limit: limit || search.pageOptions.limit,
             lean: true,
             sort: sortField

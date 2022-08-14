@@ -18,6 +18,7 @@ exports.customQuery = (query) => {
         populate,
         page,
         limit,
+        from,
         sortField,
         sortDirection,
 
@@ -28,6 +29,7 @@ exports.customQuery = (query) => {
         select,
         populate,
         page: Number(page),
+        from: Number(from),
         limit: Number(limit),
         sortField,
         sortDirection,
