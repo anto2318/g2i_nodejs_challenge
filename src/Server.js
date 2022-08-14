@@ -3,7 +3,7 @@ const fastify = require('fastify');
 const config = require('../config');
 const multer = require('fastify-multer')
 
-const { Mongodb, Services, Routes } = require('./plugins');
+const { Mongodb, Services, Routes, Authentication } = require('./plugins');
 class Server {
   constructor() {
     this.fastify = fastify({
@@ -18,6 +18,7 @@ class Server {
       .register(require('fastify-swagger'), config.swagger)
       .register(require('fastify-boom'))
       .register(multer.contentParser)
+      .register(Authentication)
       .register(Mongodb)
       .register(Services)
       .register(Routes);

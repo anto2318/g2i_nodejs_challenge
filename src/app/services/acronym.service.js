@@ -48,18 +48,22 @@ class AcronymService {
         return object;
     }
 
-    async delete(nodeData) {
-        let deleted = false;
-
-        const result = await this.Model.deleteMany({ _id: nodeData }).lean();
-        deleted = { ids: nodeData, deleted: result.n > 0 };
+    async delete(acronym) {
+        const query = acronym[`${acronym}`];
+        const deleted = await this.Model.findOneAndDelete(
+            { query }
+        )
+        .catch((e) => {
+            throw e;
+        });
 
         return deleted;
     }
 
-    async update(id, data) {
+    async update(acronym, data) {
+        const query = acronym[`${acronym}`];
         const updated = await this.Model.findOneAndUpdate(
-            { _id: id },
+            { query },
             { $set: objectToDotNotation({ updatedAt: Date.now(), ...data }) },
             { new: true }
         )

@@ -6,6 +6,6 @@ module.exports = async function(fastify) {
   .get('/', { schema: search }, ctrl(fastify).search)
   .get('/:id', { schema: get }, ctrl(fastify).get)
   .post('/', { schema: add }, ctrl(fastify).add)
-  .put('/:id', { schema: update }, ctrl(fastify).update)
-  .delete('/', { schema: remove }, ctrl(fastify).delete);
+  .put('/:acronym', { schema: update, preValidation: [fastify.validate] }, ctrl(fastify).update)
+  .delete('/:acronym', { schema: remove, preValidation: [fastify.validate] }, ctrl(fastify).delete);
 };

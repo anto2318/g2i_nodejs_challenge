@@ -40,7 +40,9 @@ module.exports = {
             produces: ['application/json'],
         },
     },
-
+    auth: {
+        secretKey: process.env.SECRET_KEY,
+    },
     search: {
         pageOptions: {
             limit: 10,

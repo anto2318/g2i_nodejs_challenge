@@ -19,23 +19,12 @@ const acronymController = (fastify) => {
             res.send(result);
         },
         update: async (req, res) => {
-            const result = await acronymService.update(req.params.id, req.body);
-            res.send(result);
+            const result = await acronymService.update(req.params.acronym, req.body);
+            res.send({result, msg: "Record updated successfully"});
         },
         delete: async (req, res) => {
-            try {
-                await acronymService.delete(req.body);
-
-                const query = customQuery(req.query);
-                const result = await acronymService.search({
-                    ...query,
-                    logger: req.user.id,
-                });
-
-                res.send({ result, message: 'Deleted acronym successfully' });
-            } catch (e) {
-                res.send(e);
-            }
+            const result = await acronymService.delete(req.params.acronym, req.body);
+            res.send({result, msg: "Record deleted successfully"});
         },
     };
 };
